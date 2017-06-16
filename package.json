@@ -1,6 +1,6 @@
 {
   "name": "storybook-groups",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Add groups to react storybook",
   "main": "lib/index.js",
   "scripts": {
@@ -30,6 +30,7 @@
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "@kadira/storybook": "*"
+    "@kadira/storybook": "*",
+    "prop-types": "^15.5.10",
   }
 }
