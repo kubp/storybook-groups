@@ -30,7 +30,12 @@ const css = {
     background: "#f7f7f7",
     marginTop: "10px",
     padding: 10,
-    borderRadius: "4px"
+    borderRadius: "4px",
+    border: "1px solid rgb(228, 221, 221)",
+    marginLeft: "22px"
+  },
+  container: {
+    display: "flex"
   }
 };
 
@@ -86,7 +91,7 @@ export class GroupComponent extends React.Component{
   }
 
   render(){
-    return <div>
+    return <div style={css.container}>
       {this.makeGroups(manager.groupStore).map(function(v,index){
         return <div key={index} style={css.item}>
             <h1 style={css.title}>{v.name}</h1>
