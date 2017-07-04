@@ -1,7 +1,7 @@
 import React from 'react';
-import { withKnobs, text, boolean, number } from '@kadira/storybook-addon-knobs';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-import  {getStorybook } from '@kadira/storybook';
+import  {getStorybook } from '@storybook/react';
 
 import ReactDOMServer from 'react-dom/server'
 
@@ -23,18 +23,25 @@ const css = {
   title: {
     fontFamily: '-apple-system, ".SFNSText-Regular", "San Francisco", Roboto, "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif',
     color: "rgb(68, 68, 68)",
-    marginTop: "0px"
-
+    marginTop: "0px",
+    marginLeft: "20px"
   },
-  item: {
+  group: {
     background: "#f7f7f7",
     marginTop: "10px",
-    padding: 10,
+    padding: "15px 15px 15px 0px",
     borderRadius: "4px",
     border: "1px solid rgb(228, 221, 221)",
-    marginLeft: "22px"
+    marginLeft: "20px"
   },
   container: {
+    display: "flex",
+    flexFlow: "row wrap"
+  },
+  item: {
+    marginLeft: "20px"
+  },
+  items: {
     display: "flex"
   }
 };
@@ -43,7 +50,7 @@ const css = {
 export class GroupComponent extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {mounted: false}
+    this.state = {mounted: false, css: {}}
   }
 
   componentDidMount(){
@@ -61,7 +68,7 @@ export class GroupComponent extends React.Component{
         manager.wrap(story.stories[i].render(context), context)
     }
 
-    this.setState({mounted: true})
+    this.setState({mounted: true, css: this.props.style || css})
   }
 
 
@@ -91,15 +98,20 @@ export class GroupComponent extends React.Component{
   }
 
   render(){
-    return <div style={css.container}>
+    return <div style={this.state.css.container}>
       {this.makeGroups(manager.groupStore).map(function(v,index){
-        return <div key={index} style={css.item}>
-            <h1 style={css.title}>{v.name}</h1>
-            {v.items.map(function(h, index){
-              return <div key={index}>{h}</div>
+        return <div key={index} style={this.state.css.group}>
+          <div>
+            <h1 style={this.state.css.title}>{v.name}</h1>
+          </div>
+          <div style={this.state.css.items}>
+            {v.items.map((h, index) => {
+              return <div key={index} style={this.state.css.item}>{h}</div>
             })}
           </div>
+          </div>
         }, this)}
+
         </div>
    }
 
@@ -109,8 +121,8 @@ GroupComponent.contextTypes = {
 };
 
 //with knobs
-export const Groups = function(){
-    return <GroupComponent groupStore={manager.groupStore} getStorybook={getStorybook}/>
+export const Groups = function(style){
+    return <GroupComponent groupStore={manager.groupStore} getStorybook={getStorybook} style={style.style}/>
 }
 
 

@@ -33,10 +33,10 @@ const stories = storiesOf('Storybook Knobs', module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(withGroups);
 
-stories.add('with a button 2-button1', () => (
+stories.add('with a button 1-button1', () => (
 
   <button >
-{text('Label2', 'Hello Button 1')}
+{text('Button1', 'Hello Button 1')}
   </button>
 
 ))
