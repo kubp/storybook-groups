@@ -1,11 +1,11 @@
 {
   "name": "storybook-groups",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Add groups to react storybook",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "transform" : "babel dist -d lib -w --presets react,es2015"
+    "transform": "babel dist -d lib -w --presets react,es2015"
   },
   "repository": {
     "type": "git",
@@ -24,13 +24,15 @@
     "babel-preset-es2015": "^6.24.1"
   },
   "files": [
-  "README.md",
-  "lib/"
+    "README.md",
+    "lib/"
   ],
   "dependencies": {
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
     "@kadira/storybook": "*",
     "prop-types": "^15.5.10"
+  },
+  "peerDependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   }
 }
